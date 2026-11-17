@@ -172,11 +172,14 @@ public:
     }
     void OnConfigLoad(bool /*reload*/) override
     {
-        // Resolve against the main config, not the process working directory.
+        // Resolve against the main config directory, not the process working directory.
         std::string path = sConfigMgr->GetFilename();
         std::string::size_type slash = path.find_last_of("/\\");
-        path = (slash == std::string::npos ? "" : path.substr(0, slash + 1)) + "anticheat.conf";
+        path = (slash == std::string::npos ? "" : path.substr(0, slash + 1)) + "modules/anticheat.conf";
         bool loaded = sConfigMgr->LoadMore(path.c_str());
+        if (!loaded)
+            SF_LOG_WARN("server.loading", "Anticheat config not found at %s; monitoring disabled. "
+                "Copy anticheat.conf.dist to anticheat.conf in the configs/modules directory.", path.c_str());
         Settings next;
         if (loaded)
             SkyFireAnticheat::ParsePositiveUint32(

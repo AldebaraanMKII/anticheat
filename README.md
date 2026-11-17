@@ -20,8 +20,8 @@ git clone https://github.com/ProjectSkyFire-Modules/anticheat.git modules/mod-an
 
 Reconfigure CMake with `MODULES=ON` and `MOD_ANTICHEAT=ON`, build worldserver,
 then run INSTALL. Use the exact folder name `mod-anticheat` for loader discovery.
-Copy the installed `anticheat.conf.dist` to `anticheat.conf` beside the actual
-`worldserver.conf` supplied to worldserver. Restart worldserver or use the core's
+Copy the installed `anticheat.conf.dist` to `anticheat.conf` in the
+`configs/modules` directory used by worldserver. Restart worldserver or use the core's
 configuration reload command. Missing config disables monitoring.
 
 ### Module configuration serial
